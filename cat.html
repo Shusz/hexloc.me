@@ -1,0 +1,116 @@
+<html class="sl-theme-dark">
+  <head>
+    <title>Cat Generator 3000!</title>
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.11.2/cdn/shoelace-autoloader.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.11.2/cdn/themes/dark.css"
+    />
+  </head>
+  <body onload="getCatImage()">
+    <p id="credit">
+      made using <a href="https://thecatapi.com">thecatapi.com</a>
+    </p>
+    <div id="cat-block">
+      <h1 class="center" id="title">Cat Generator 3000</h1>
+      <img id="cat" class="center" />
+      <br />
+      <div id="btns">
+        <sl-button variant="success" onclick="getCatImage()">🐈</sl-button>
+      </div>
+    </div>
+    <div id="bottom" onclick="goto('https://hexloc.me')">
+      made with ♥️ by hexlocation
+    </div>
+  </body>
+</html>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500&family=Poppins&display=swap");
+  #title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #credit {
+    color: gray;
+  }
+  #bottom:hover {
+    cursor: grabbing;
+  }
+  #bottom {
+    color: gray;
+    margin-top: auto;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    position: fixed;
+    bottom: 10px;
+    left: 30%;
+    right: 30%;
+  }
+  body {
+    font-family: "Open Sans";
+    color: white;
+  }
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #cat {
+    margin-top: 10px;
+    width: 25%;
+  }
+  #btns {
+    display: flex;
+    width: 100px;
+    gap: 100px;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+<script>
+  var id;
+  function goto(s) {
+    window.location.href = s;
+  }
+  function getCatImage() {
+    fetch("https://api.thecatapi.com/v1/images/search")
+      .then((val) => val.json())
+      .then((val) => {
+        document.getElementById("cat").src = val[0].url;
+        id = val[0].id;
+        console.log(id);
+      });
+  }
+  function vote(vote_val) {
+    var body = { image_id: id };
+    if (vote_val) {
+      body["value"] = 1;
+    } else {
+      body["value"] = -1;
+    }
+    fetch("https://api.thecatapi.com/v1/votes", {
+      method: "POST",
+      body: JSON.stringify(body),
+      headers: {
+        "x-api-key": "x",
+      },
+    })
+      .then((val) => val.text())
+      .then((val) => {
+        console.log(val);
+        getCatImage();
+      });
+  }
+</script>

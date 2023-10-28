@@ -1,0 +1,120 @@
+<html class="sl-theme-dark">
+  <head>
+    <title>hexlocation</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.11.0/cdn/themes/dark.css"
+    />
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.11.0/cdn/shoelace-autoloader.js"
+    ></script>
+  </head>
+  <body onload="setMD()">
+    <div id="titlebox">
+      <sl-animated-image
+        src="https://cdn.discordapp.com/avatars/1105878237416001647/a_2d2afc42ff68960e37c52a2b80ba0cf3.gif?size=100"
+        alt="pfp"
+        id="pfp"
+        style="width: 100px; height: 100px"
+        play
+      >
+      </sl-animated-image>
+      <p id="name-text">hexlocation</p>
+    </div>
+    <sl-divider></sl-divider>
+    <div id="contentbox">
+      <sl-card class="card-basic" id="contentcard">
+        <sl-tab-group id="contenttab">
+          <sl-tab slot="nav" panel="abt">About Me</sl-tab>
+          <sl-tab slot="nav" panel="intr">Interests</sl-tab>
+          <sl-tab slot="nav" panel="projects">Projects</sl-tab>
+          <sl-tab slot="nav" panel="cnt">Contact</sl-tab>
+          <sl-tab slot="nav" panel="dnt">Donate</sl-tab>
+
+          <sl-tab-panel name="abt" id="abt"
+            >Loading...</sl-tab-panel
+          >
+          <sl-tab-panel name="intr" id="intr"
+            >Loading...</sl-tab-panel
+          >
+          <sl-tab-panel name="projects" id="projects"
+            >Loading...</sl-tab-panel
+          >
+                    <sl-tab-panel name="cnt" id="cnt"
+            >Loading...</sl-tab-panel
+          >
+          <sl-tab-panel name="dnt" id="dnt"
+            >Loading...</sl-tab-panel
+          >
+        </sl-tab-group>
+      </sl-card>
+    </div>
+  </body>
+</html>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500&family=Poppins&display=swap");
+  body {
+    font-family: "Open Sans";
+  }
+  #titlebox {
+    font-family: "Open Sans", sans-serif;
+    justify-content: left;
+    align-items: center;
+    display: flex;
+  }
+  #contentbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #contentcard {
+    width: 1000px;
+  }
+  #pfp {
+    margin-left: 40%;
+  }
+  #name-text {
+    font-size: 30px;
+    margin-left: 2%;
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+ function setMD(){
+  fetch(`${window.location.href}md/about.md`).then(val => val.text()).then(resp => {
+    console.log(resp)
+  document.getElementById("abt").innerHTML =  marked.parse(
+     resp
+  );
+  })
+    fetch(`${window.location.href}md/interests.md`).then(val => val.text()).then(resp => {
+    console.log(resp)
+  document.getElementById("intr").innerHTML =  marked.parse(
+     resp
+  );
+  })
+    fetch(`${window.location.href}md/projects.md`).then(val => val.text()).then(resp => {
+    console.log(resp)
+  document.getElementById("projects").innerHTML =  marked.parse(
+     resp
+  );
+  })
+    fetch(`${window.location.href}md/donate.md`).then(val => val.text()).then(resp => {
+    console.log(resp)
+  document.getElementById("dnt").innerHTML =  marked.parse(
+     resp
+  );
+  })
+      fetch(`${window.location.href}md/contact.md`).then(val => val.text()).then(resp => {
+    console.log(resp)
+  document.getElementById("cnt").innerHTML =  marked.parse(
+     resp
+  );
+  })
+
+}
+</script>
+
+
+</codehub>
