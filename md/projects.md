@@ -14,9 +14,9 @@
   - Website about me ;)
   - Status: Active
   - [Go](https://hexloc.me)
-  - Source Code: Soon, when i find out how github works.
+  - [Source Code](https://github.com/Shusz/hexloc.me)
 - hexloc.me/cat
   - Cat Generator omg!!!!
   - Status: Active
   - [Go](https://hexloc.me/cat)
-  - Source Code: Soon, when i find out how github works.
+  - [Source Code](https://github.com/Shusz/hexloc.me)

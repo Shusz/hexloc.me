@@ -16,7 +16,7 @@
     </p>
     <div id="cat-block">
       <h1 class="center" id="title">Cat Generator 3000</h1>
-      <img id="cat" class="center" />
+      <img id="cat" class="center" src="https://hexloc.me/_ico/loading" />
       <br />
       <div id="btns">
         <sl-button variant="success" onclick="getCatImage()">🐈</sl-button>
@@ -29,6 +29,13 @@
 </html>
 <style>
   @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500&family=Poppins&display=swap");
+  img[alt=""] {
+    display: none;
+  }
+  img {
+    border: none;
+  }
+
   #title {
     display: flex;
     justify-content: center;
@@ -85,6 +92,8 @@
     window.location.href = s;
   }
   function getCatImage() {
+    //https://hexloc.me/icons/loading.gif
+    document.getElementById("cat").src = "https://hexloc.me/_ico/loading";
     fetch("https://api.thecatapi.com/v1/images/search")
       .then((val) => val.json())
       .then((val) => {
