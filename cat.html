@@ -1,6 +1,7 @@
 <html class="sl-theme-dark">
   <head>
-    <title>Cat Generator 3000!</title>
+    <meta content="CLICK ME FOR INFINITE CATTOS!!!" property="og:description" />
+    <title>Infinite Catto's!</title>
     <script
       type="module"
       src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.11.2/cdn/shoelace-autoloader.js"
@@ -11,12 +12,10 @@
     />
   </head>
   <body onload="getCatImage()">
-    <p id="credit">
-      made using <a href="https://thecatapi.com">thecatapi.com</a>
-    </p>
+    <p id="credit"></p>
     <div id="cat-block">
-      <h1 class="center" id="title">Cat Generator 3000</h1>
-      <img id="cat" class="center" onload="" />
+      <h1 class="center" id="title">Infinite Catto's!</h1>
+      <img id="cat" class="center" onload="" alt="click me!" />
       <br />
       <div id="btns">
         <sl-button variant="success" onclick="getCatImage()" id="refresh"
@@ -43,6 +42,10 @@
   }
   #secs {
     display: none;
+  }
+  .break {
+    flex-basis: 100%;
+    height: 0;
   }
 
   #title {
@@ -83,7 +86,11 @@
   }
   #cat {
     margin-top: 10px;
-    width: 25%;
+    max-width: 25%;
+    max-height: 25%;
+  }
+  #cat:hover {
+    cursor: grab;
   }
   #btns {
     display: flex;
@@ -96,6 +103,10 @@
   }
 </style>
 <script>
+  var cat_img = document.getElementById("cat");
+  cat_img.addEventListener("click", function (e) {
+    cat_img.requestFullscreen();
+  });
   var id;
   var autoStat;
   function goto(s) {
@@ -104,6 +115,7 @@
   function toggleAuto() {
     var btn = document.getElementById("auto");
     var secsBox = document.getElementById("secs");
+    var warning = document.getElementById("warning");
     if (autoStat) {
       secsBox.style = "display: none !important;";
       clearInterval(autoStat);
