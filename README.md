@@ -1,7 +1,5 @@
 # hexloc.me
 
----
-
 includes hexloc.me & hexloc.me/\*
 
 ## Install:
