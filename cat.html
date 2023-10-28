@@ -16,10 +16,16 @@
     </p>
     <div id="cat-block">
       <h1 class="center" id="title">Cat Generator 3000</h1>
-      <img id="cat" class="center" src="https://hexloc.me/_ico/loading" />
+      <img id="cat" class="center" onload="" />
       <br />
       <div id="btns">
-        <sl-button variant="success" onclick="getCatImage()">🐈</sl-button>
+        <sl-button variant="success" onclick="getCatImage()" id="refresh"
+          >🐈</sl-button
+        >
+        <sl-button variant="danger" onclick="toggleAuto()" id="auto"
+          >🤖</sl-button
+        >
+        <sl-input type="number" value="4" label="Seconds" id="secs"></sl-input>
       </div>
     </div>
     <div id="bottom" onclick="goto('https://hexloc.me')">
@@ -34,6 +40,9 @@
   }
   img {
     border: none;
+  }
+  #secs {
+    display: none;
   }
 
   #title {
@@ -88,18 +97,49 @@
 </style>
 <script>
   var id;
+  var autoStat;
   function goto(s) {
     window.location.href = s;
   }
+  function toggleAuto() {
+    var btn = document.getElementById("auto");
+    var secsBox = document.getElementById("secs");
+    if (autoStat) {
+      secsBox.style = "display: none !important;";
+      clearInterval(autoStat);
+      autoStat = "";
+      auto.variant = "danger";
+    } else {
+      secsBox.style = "display: flex !important;";
+      autoStat = setInterval(() => {
+        getCatImage();
+      }, secsBox.value * 1000);
+      secsBox.oninput = () => {
+        console.log("changed!");
+        clearInterval(autoStat);
+        autoStat = setInterval(() => {
+          getCatImage();
+        }, secsBox.value * 1000);
+      };
+      auto.variant = "success";
+    }
+  }
   function getCatImage() {
+    document.querySelector("#refresh").disabled = true;
     //https://hexloc.me/icons/loading.gif
-    document.getElementById("cat").src = "https://hexloc.me/_ico/loading";
     fetch("https://api.thecatapi.com/v1/images/search")
       .then((val) => val.json())
       .then((val) => {
-        document.getElementById("cat").src = val[0].url;
+        var img = document.getElementById("cat");
+        img.src = val[0].url;
         id = val[0].id;
         console.log(id);
+
+        img.onload = function () {
+          console.log("loaded");
+          if (img.src.startsWith("https://hexloc.me")) return;
+          document.querySelector("#refresh").disabled = false;
+        };
       });
   }
   function vote(vote_val) {
