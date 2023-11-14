@@ -3,4 +3,9 @@
 ---
 
 Send me a _thank you_ if you like me or what i do.
-I might add a donate button l8er idk.
+If you really wanna donate; here are my crypto addresses!
+
+Litecoin: LKK9vUJj2k4nkh5ZmAMrRv2YzpjvviXrQW  
+Bitcoin: bc1q6dmx8me2vt5gv57euu0v3rry7ghtcdntsn5m4s
+
+Paypal? DM me on Discord or send me an email.

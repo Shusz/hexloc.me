@@ -12,7 +12,6 @@
     />
   </head>
   <body onload="getCatImage()">
-    <p id="credit"></p>
     <div id="cat-block">
       <h1 class="center" id="title">Infinite Catto's!</h1>
       <img id="cat" class="center" onload="" alt="click me!" />
@@ -28,8 +27,16 @@
       </div>
     </div>
     <div id="bottom" onclick="goto('https://hexloc.me')">
-      made with ♥️ by hexlocation
+      made with ♥️ by hexlocation using thecatapi.com
     </div>
+    <p id="credit">
+      <sl-details summary="Favorites">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.
+      </sl-details>
+    </p>
   </body>
 </html>
 <style>
@@ -54,9 +61,15 @@
     align-items: center;
     margin-left: auto;
     margin-right: auto;
+    letter-spacing: 1px;
   }
   #credit {
     color: gray;
+    max-width: 500px;
+    display: flex;
+    position: fixed;
+    top: 20px;
+    left: 20px;
   }
   #bottom:hover {
     cursor: grabbing;
@@ -88,6 +101,8 @@
     margin-top: 10px;
     max-width: 25%;
     max-height: 25%;
+    border-radius: 5px;
+    box-shadow: -20px 20px 10px rgba(0, 0, 0, 0.153);
   }
   #cat:hover {
     cursor: grab;
@@ -107,7 +122,7 @@
   cat_img.addEventListener("click", function (e) {
     cat_img.requestFullscreen();
   });
-  var id;
+  var catimg;
   var autoStat;
   function goto(s) {
     window.location.href = s;
@@ -144,8 +159,7 @@
       .then((val) => {
         var img = document.getElementById("cat");
         img.src = val[0].url;
-        id = val[0].id;
-        console.log(id);
+        catimg = val[0];
 
         img.onload = function () {
           console.log("loaded");
