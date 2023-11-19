@@ -2,7 +2,7 @@
 
 ---
 
-I'm hexlocation, also known as hex, SUSmate, Shushmate, Skidmate, Brighted_Pvp, Shushy & Shush
+I'm hexlocation, also known as hex.
 
 <details >
     <summary></summary>
